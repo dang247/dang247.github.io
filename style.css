@@ -20,7 +20,7 @@ body {
     justify-content: space-between;
     align-items: center;
 
-    width: 80%;
+    width: 75%;
     height: 50px;
     margin-top: 12px;
     margin-bottom: 100px; 
@@ -38,7 +38,7 @@ body {
     width: 60%;
 }
 a {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 500;
     text-decoration: none;
     color: cyan;
@@ -46,35 +46,38 @@ a {
 .top-box-content {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    
     flex-wrap: wrap;
     gap: 40px;
 
-    width: 80%;
-    height: 200px;
+    width: 75%;
     max-height: 200px;
 }
 .top-box-content-left {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    flex: 1;
 
-    padding: 0;
-    max-width: 40%;
-    height: 200px;
+    max-width: 350px;
     margin: 0;
 }
 .p1 {
-    font-size: 36px;
+    font-size: 32px;
     font-weight: 700;
     color: cyan;
+
     margin: 0;
 }
 .p2 {
     font-size: 16px;
     color: #F9FAF8;
+
     margin: 0;
 }
+.btn-signup {
 
+}
 .nebula {
+    flex: 1;
     height: 200px;
 }
