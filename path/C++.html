@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="C++.css">
+    <title>Document</title>
+</head>
+<body>
+    #include <iostream>
+#include <stack>
+#include <vector>
+using namespace std;
+
+int r, c, area, maxArea=0;
+vector<vector<int>> a;
+vector<vector<int>> h;
+
+void inputMatrix() {
+    scanf("%d %d", &r, &c);
+    a.resize(r, vector<int>(c));
+    for(int i=0; i<r; i++) {
+        for(int j=0; j<c; j++) {
+            scanf("%d", &a[i][j]);
+        }
+    }
+}
+void inputHistogram() {
+    h.resize(r, vector<int>(c));
+    for(int j=0; j<c; j++) {
+        if(a[0][j]==1) h[0][j]=1;
+        else h[0][j]=0;
+    }
+    for(int i=1; i<r; i++) {
+        for(int j=0; j<c; j++) {
+            if(a[i][j]==1) h[i][j]=h[i-1][j]+1;
+            else h[i][j]=0;
+        }
+    }
+}
+void checkRow(int x) {
+    // xét từng phần tử của Row
+    for(int i=0; i<c; i++) {
+        int left=i, right=i;
+        // tìm chặn trái
+        for(int j=i-1; j>=0; j--) {
+            if(h[x][j]>=h[x][i]) left-=1;
+            else break;
+        }
+        // tìm chặn phải
+        for(int j=i+1; j<c; j++) {
+            if(h[x][j]>=h[x][i]) right+=1;
+            else break;
+        }
+        // tính diện tích 
+        area=h[x][i]*(right-left+1);
+        if(area>maxArea) maxArea=area;
+    }
+}
+int main() {
+    inputMatrix();
+    inputHistogram();
+    for(int k=0; k<r; k++) {
+        checkRow(k);
+    }
+    printf("%d", maxArea);
+    return 0;
+}
+</body>
+</html>
