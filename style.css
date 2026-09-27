@@ -57,12 +57,14 @@ a {
     display: flex;
     flex-direction: column;
     flex: 1;
+    gap: 6px;
 
     max-width: 350px;
+    max-height: 200px;
     margin: 0;
 }
 .p1 {
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 700;
     color: cyan;
 
@@ -75,9 +77,23 @@ a {
     margin: 0;
 }
 .btn-signup {
+    background-color: #3882F6;
+    color: #F9FAF8;
+    font-size: 16px;
+    font-weight: 400;
+    max-width: 120px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
 
+}
+.btn-signup:hover {
+    background-color: #1f61f1;
 }
 .nebula {
     flex: 1;
+    max-width: 400px;
     height: 200px;
 }
