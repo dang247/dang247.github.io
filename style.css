@@ -1,3 +1,4 @@
+/* =========== Default ===========*/
 body {
     font-family: Roboto, sans-serif;
     font-size: 16px;
@@ -5,17 +6,15 @@ body {
 }
 /* =========== Top Box =========== */
 .top-box {
-    color: white;
     background-color: rgb(17, 33, 48);
 
     display: flex;
-    justify-content: left;
-    align-items: center;
     flex-flow: column wrap;
+    align-items: center;
+    gap: 100px;
 
-    width: 100%;
-    min-height: 535px;
-    padding: 12px 0;
+    /* width: 100%; */
+    min-height: 500px;
 }
 .the-header {
     display: flex;
@@ -24,9 +23,7 @@ body {
 
     width: 75%;
     max-width: 900px;
-    height: 50px;
-    margin-top: 12px;
-    margin-bottom: 100px; 
+    margin-top: 8px;
 }
 .header-logo {
     font-size: 24px;
@@ -96,9 +93,58 @@ a {
     background-color: #1f61f1;
 }
 .nebula {
-    flex: 1;
     min-width: 250px;
     max-width: 400px;
     height: 200px;
 }
 /* =========== Second Box =========== */
+.second-box {
+    background-color: rgb(230, 240, 251);
+
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+
+    /* width: 100%; */
+    min-height: 400px;
+}
+.second-box-title {
+    font-size: 26px;
+    font-weight: 700;
+    color:rgb(17, 33, 48);
+
+    margin-top: 36px;
+    margin-bottom: 36px;
+}
+.info-list {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+
+    width: 65%;
+    max-width: 800px;
+}
+.info-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+.card-img {
+    width: 120px;
+    height: 120px;
+
+    border: 3px solid #1f61f1;
+    border-radius: 16px;
+}
+.subtext {
+    text-align: center;
+    text-wrap: wrap;
+    color:rgb(17, 33, 48);
+
+    max-width: 150px;
+    margin: 0;
+}
+/* ============ Third Box ============ */
