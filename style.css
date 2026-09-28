@@ -99,14 +99,14 @@ a {
 }
 /* =========== Second Box =========== */
 .second-box {
-    background-color: rgb(230, 240, 251);
+    background-color: rgb(237, 243, 249);
 
     display: flex;
     flex-flow: column wrap;
     align-items: center;
 
     /* width: 100%; */
-    min-height: 400px;
+    min-height: 380px;
 }
 .second-box-title {
     font-size: 26px;
@@ -123,7 +123,8 @@ a {
     align-items: center;
     gap: 30px;
 
-    width: 65%;
+    padding: 8px;
+    min-width: 600px;
     max-width: 800px;
 }
 .info-card {
@@ -148,3 +149,37 @@ a {
     margin: 0;
 }
 /* ============ Third Box ============ */
+.third-box {
+    background-color: rgb(222, 225, 229);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 380px;
+}
+.third-box-text {
+    display: flex;
+    flex-direction: column;
+}
+.quote {
+    font-size: 26px;
+    font-weight: 200;
+    font-style: italic;
+    text-align: justify;
+    text-wrap: wrap;
+    color: rgb(27, 58, 86);
+   
+    margin: 8px;
+    min-width: 400px;
+    max-width: 600px;
+}
+.quote-author {
+    font-size: 18px;
+    font-weight: 600;
+    align-self: flex-end;
+    color:rgb(17, 33, 48);
+
+    margin: 8px;
+}
