@@ -14,12 +14,15 @@ body {
     gap: 100px;
 
     /* width: 100%; */
+    min-width: 400px;
     min-height: 500px;
 }
 .the-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
 
     width: 75%;
     max-width: 900px;
@@ -34,9 +37,8 @@ body {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    flex-wrap: wrap;
     gap: 12px;
-
-    width: 50%;
 }
 a {
     font-size: 20px;
@@ -52,6 +54,7 @@ a {
 
     width: 75%;
     max-width: 900px;
+    margin-bottom: 20px;
 }
 .top-box-content-left {
     display: flex;
