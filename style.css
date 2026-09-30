@@ -1,7 +1,4 @@
 /* =========== Default ===========*/
-* {
-    box-sizing: border-box;
-}
 body {
     font-family: Roboto, sans-serif;
     font-size: 16px;
@@ -17,7 +14,6 @@ body {
     gap: 100px;
 
     /* width: 100%; */
-    min-width: 400px;
     min-height: 500px;
 }
 .the-header {
@@ -98,9 +94,9 @@ a {
     background-color: #1f61f1;
 }
 .nebula {
-    min-width: 250px;
+    width: 100%;
     max-width: 400px;
-    height: 200px;
+    height: auto;
 }
 /* =========== Second Box =========== */
 .second-box {
@@ -127,13 +123,12 @@ a {
     justify-content: center;
     gap: 36px;
 
-    padding: 8px;
-    min-width: 600px;
+    width: 100%;
     max-width: 800px;
-
+    padding: 8px;
     margin: 0 16px;
 }
-@media (max-width: 600px) {
+@media (max-width: 600px) { /* ép 4 card thành 1 cột trên mobile */
     .info-list {
         flex-direction: column;
         align-items: center;
@@ -186,7 +181,6 @@ a {
     color: rgb(27, 58, 86);
    
     margin: 8px;
-    min-width: 400px;
     max-width: 600px;
 }
 .quote-author {
@@ -215,10 +209,13 @@ a {
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
-    gap: 80px;
-    padding: 18px 90px;
+    gap: 20px;
+    padding: 20px;
 
-    min-height: 110px;
+    width: 70%;
+    max-width: 900px;
+    box-sizing: border-box;
+
     margin: 16px;
 }
 .blue-box-text {
@@ -257,4 +254,14 @@ a {
     background-color: #f0f2f8;
     color: #3882F6;
     border: 2px solid #1d72fb;
+}
+footer {
+    background-color: rgb(13, 24, 35);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 80px;
+
+    color: white;
 }
