@@ -1,5 +1,13 @@
 /* =========== Default ===========*/
+* {
+    box-sizing: border-box;
+}
+html {
+    width: 100%;
+    margin: 0;
+}
 body {
+    width: 100%;
     font-family: Roboto, sans-serif;
     font-size: 16px;
     margin: 0;
@@ -9,7 +17,7 @@ body {
     background-color: rgb(17, 33, 48);
 
     display: flex;
-    flex-flow: column wrap;
+    flex-direction: column;
     align-items: center;
     gap: 100px;
 
