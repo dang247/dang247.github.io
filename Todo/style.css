@@ -1,0 +1,79 @@
+/* ==== Default ==== */
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+}
+::placeholder {
+    font-style: italic;
+}
+*:focus::placeholder {
+    opacity: 0;
+}
+
+/* ========== Todo box ========= */
+.to-do-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.header {
+    font-size: 32px;
+    font-weight: 700;
+    color: blue;
+}
+form {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 12px;
+}
+.title {
+    background-color: rgb(232, 238, 240);
+    outline: 1px solid black;
+    font-size: 14px;
+
+    border-radius: 6px;
+    border: none;
+    min-height: 28px;
+}
+.title:focus {
+    background-color: white;
+    outline: 2px solid rgb(34, 84, 160);
+}
+.deadline {
+    background-color: rgb(232, 238, 240);
+    color: rgb(135, 150, 155);
+    outline: 1px solid black;
+    font-size: 14px;
+    border-radius: 6px;
+    border: none;
+    min-height: 28px;
+}
+.deadline:focus {
+    background-color: white;
+    outline: 2px solid rgb(34, 84, 160);
+}
+.note {
+    background-color: rgb(232, 238, 240);
+    outline: 1px solid black;
+    font-size: 14px;
+    border-radius: 6px;
+    border: none;
+    min-height: 28px;
+}
+.note:focus {
+    background-color: white;
+    outline: 2px solid rgb(34, 84, 160);
+}
+.btn-submit {
+    background-color: rgb(0, 217, 255);
+    outline: 1px solid black;
+    font-size: 16px;
+    border-radius: 6px;
+    border: none;
+    min-height: 24px;
+}
