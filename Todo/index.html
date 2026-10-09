@@ -9,6 +9,28 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <section class="auth-box">
+        <p class="login">Đăng nhập</p>
+        <form class="auth-form">
+            <input
+                type="email"
+                class="auth-email"
+                placeholder="Email..."
+                autocomplete="email"
+                required
+            >
+            <input 
+                type="password" 
+                class="auth-password" 
+                placeholder="Mật khẩu" 
+                autocomplete="current-password" 
+                required 
+            >
+            <button type="submit">Đăng nhập</button>
+            <button type="button" class="btn-signup">Đăng ký</button>
+        </form>
+        <p class="auth-message"></p>
+    </section>
     <div class="to-do-box">
         <p class="header">Todo List</p>
         <form class="form">
@@ -19,6 +41,7 @@
         </form>
         <section class="task-list"></section>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js"></script>
 </body>
 </html>
