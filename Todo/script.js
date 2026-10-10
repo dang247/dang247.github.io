@@ -13,22 +13,54 @@ const title = document.querySelector(".title");
 const deadline = document.querySelector(".deadline");
 const note = document.querySelector(".note");
 const taskList = document.querySelector(".task-list");
+let currentSession = null;
 
-form.addEventListener("submit", function(event) {
+
+form.addEventListener("submit", async function(event) {
     event.preventDefault();
 
-    const task = document.createElement("div");
+    if (!currentSession) {
+        alert("Bạn cần đăng nhập trước!");
+        return;
+    }
 
+    const taskTitleValue = title.value.trim();
+
+    if (!taskTitleValue) {
+        alert("Vui lòng nhập tiêu đề công việc!");
+        return;
+    }
+
+    const newTask = {
+        title: taskTitleValue,
+        deadline: deadline.value || null,
+        note: note.value.trim() || null,
+        user_id: currentSession.user.id
+    };
+
+    const { data, error } = await supabaseClient
+        .from("tasks")
+        .insert(newTask)
+        .select()
+        .single();
+
+    if (error) {
+        console.error("Lỗi thêm task:", error);
+        alert("Không thể thêm công việc: " + error.message);
+        return;
+    }
+
+    const task = document.createElement("div");
     task.classList.add("task");
 
     const taskTitle = document.createElement("p");
-    taskTitle.textContent = title.value;
+    taskTitle.textContent = data.title;
 
     const taskDeadline = document.createElement("p");
-    taskDeadline.textContent = deadline.value;
+    taskDeadline.textContent = data.deadline || "Chưa có hạn";
 
     const taskNote = document.createElement("p");
-    taskNote.textContent = note.value;
+    taskNote.textContent = data.note || "";
 
     task.appendChild(taskTitle);
     task.appendChild(taskDeadline);
@@ -38,13 +70,15 @@ form.addEventListener("submit", function(event) {
     deleteButton.textContent = "Xóa";
 
     task.appendChild(deleteButton);
+    taskList.prepend(task);
 
     deleteButton.addEventListener("click", function() {
-        task.remove();
+    deleteTask(data.id, task, deleteButton);
     });
 
-    taskList.appendChild(task);
+    form.reset();
 });
+
 const authForm = document.querySelector(".auth-form");
 const authEmail = document.querySelector(".auth-email");
 const authPassword = document.querySelector(".auth-password");
@@ -119,7 +153,12 @@ function updateAuthUI(session) {
 }
 
 supabaseClient.auth.onAuthStateChange(function(event, session) {
+    currentSession = session;
     updateAuthUI(session);
+
+    setTimeout(function() {
+        loadTasks();
+    }, 0);
 });
 
 logoutButton.addEventListener("click", async function() {
@@ -129,3 +168,80 @@ logoutButton.addEventListener("click", async function() {
         authMessage.textContent = "Lỗi đăng xuất: " + error.message;
     }
 });
+
+
+async function loadTasks() {
+    console.log("loadTasks chạy, session =", currentSession);
+
+    if (!currentSession) {
+        taskList.replaceChildren();
+        return;
+    }
+
+    const { data, error } = await supabaseClient
+        .from("tasks")
+        .select("*")
+        .order("id", { ascending: false });
+
+    if (error) {
+        console.error("Lỗi tải task:", error);
+        return;
+    }
+
+    taskList.replaceChildren();
+
+    data.forEach(function(item) {
+        const task = document.createElement("div");
+        task.classList.add("task");
+
+        const taskTitle = document.createElement("p");
+        taskTitle.textContent = item.title;
+
+        const taskDeadline = document.createElement("p");
+        taskDeadline.textContent = item.deadline || "Chưa có hạn";
+
+        const taskNote = document.createElement("p");
+        taskNote.textContent = item.note || "";
+
+        task.append(taskTitle, taskDeadline, taskNote);
+
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Xóa";
+
+        task.appendChild(deleteButton);
+
+        deleteButton.addEventListener("click", function() {
+            deleteTask(item.id, task, deleteButton);
+        });
+
+        taskList.appendChild(task);
+    });
+}
+
+async function deleteTask(taskId, taskElement, deleteButton) {
+    if (!currentSession) {
+        alert("Bạn cần đăng nhập trước!");
+        return;
+    }
+
+    //if (!confirm("Bạn có chắc muốn xóa công việc này không?")) {
+    //return;
+    //}
+
+    deleteButton.disabled = true;
+
+    const { error } = await supabaseClient
+        .from("tasks")
+        .delete()
+        .eq("id", taskId)
+        .eq("user_id", currentSession.user.id);
+
+    if (error) {
+        console.error("Lỗi xóa task:", error);
+        alert("Không thể xóa công việc: " + error.message);
+        deleteButton.disabled = false;
+        return;
+    }
+
+    taskElement.remove();
+}
