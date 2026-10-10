@@ -86,3 +86,12 @@ form {
     outline: 1px solid black;
     transition: 0.3s;
 }
+.task.completed p {
+    color: gray;
+    text-decoration: line-through;
+}
+
+.task input[type="checkbox"] {
+    margin-right: 8px;
+    cursor: pointer;
+}

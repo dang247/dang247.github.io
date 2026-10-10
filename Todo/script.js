@@ -56,6 +56,24 @@ form.addEventListener("submit", async function(event) {
     const taskTitle = document.createElement("p");
     taskTitle.textContent = data.title;
 
+    const completeCheckbox = document.createElement("input");
+    completeCheckbox.type = "checkbox";
+    completeCheckbox.checked = data.completed;
+
+    taskTitle.prepend(completeCheckbox);
+
+    if (data.completed) {
+        task.classList.add("completed");
+    }
+    completeCheckbox.addEventListener("change", function() {
+        toggleTask(
+            data.id,
+            completeCheckbox.checked,
+            task,
+            completeCheckbox
+        );
+    });
+
     const taskDeadline = document.createElement("p");
     taskDeadline.textContent = data.deadline || "Chưa có hạn";
 
@@ -193,9 +211,27 @@ async function loadTasks() {
     data.forEach(function(item) {
         const task = document.createElement("div");
         task.classList.add("task");
-
+ 
         const taskTitle = document.createElement("p");
-        taskTitle.textContent = item.title;
+        taskTitle.textContent = data.title;
+
+        const completeCheckbox = document.createElement("input");
+        completeCheckbox.type = "checkbox";
+        completeCheckbox.checked = item.completed;
+
+        taskTitle.prepend(completeCheckbox);
+
+        if (item.completed) {
+            task.classList.add("completed");
+        }
+        completeCheckbox.addEventListener("change", function() {
+            toggleTask(
+                item.id,
+                completeCheckbox.checked,
+                task,
+                completeCheckbox
+            );
+        });
 
         const taskDeadline = document.createElement("p");
         taskDeadline.textContent = item.deadline || "Chưa có hạn";
@@ -244,4 +280,26 @@ async function deleteTask(taskId, taskElement, deleteButton) {
     }
 
     taskElement.remove();
+}
+
+async function toggleTask(taskId, completed, taskElement, checkbox) {
+    if (!currentSession) return;
+
+    checkbox.disabled = true;
+
+    const { error } = await supabaseClient
+        .from("tasks")
+        .update({ completed: completed })
+        .eq("id", taskId)
+        .eq("user_id", currentSession.user.id);
+
+    if (error) {
+        console.error("Lỗi cập nhật task:", error);
+        alert("Không thể cập nhật trạng thái công việc.");
+        checkbox.checked = !completed;
+    } else {
+        taskElement.classList.toggle("completed", completed);
+    }
+
+    checkbox.disabled = false;
 }
