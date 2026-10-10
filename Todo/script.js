@@ -50,6 +50,9 @@ const authEmail = document.querySelector(".auth-email");
 const authPassword = document.querySelector(".auth-password");
 const authMessage = document.querySelector(".auth-message");
 const signupButton = document.querySelector(".btn-signup");
+const userInfo = document.querySelector(".user-info");
+const logoutButton = document.querySelector(".btn-logout");
+const todoBox = document.querySelector(".to-do-box");
 
 // Đăng nhập
 authForm.addEventListener("submit", async function(event) {
@@ -97,5 +100,32 @@ signupButton.addEventListener("click", async function() {
     } else {
         authMessage.textContent =
             "Đăng ký thành công! Hãy kiểm tra email để xác nhận tài khoản.";
+    }
+});
+function updateAuthUI(session) {
+    const loggedIn = Boolean(session);
+
+    authForm.hidden = loggedIn;
+    userInfo.hidden = !loggedIn;
+    logoutButton.hidden = !loggedIn;
+    todoBox.hidden = !loggedIn;
+
+    if (loggedIn) {
+        userInfo.textContent = "Đang đăng nhập: " + session.user.email;
+        authMessage.textContent = "";
+    } else {
+        userInfo.textContent = "";
+    }
+}
+
+supabaseClient.auth.onAuthStateChange(function(event, session) {
+    updateAuthUI(session);
+});
+
+logoutButton.addEventListener("click", async function() {
+    const { error } = await supabaseClient.auth.signOut();
+
+    if (error) {
+        authMessage.textContent = "Lỗi đăng xuất: " + error.message;
     }
 });
