@@ -1,10 +1,12 @@
 const SUPABASE_URL = "https://btecstbmvxknvgntwdul.supabase.co";
 const SUPABASE_KEY = "sb_publishable_JKqZn5GIoDOD_4d5-BljpA_75gZQ1GC";
 
-const supabase = window.supabase.createClient(
+const supabaseClient = window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
+
+console.log("Đã khởi tạo Supabase!");
 
 const form = document.querySelector(".form");
 const title = document.querySelector(".title");
@@ -42,4 +44,58 @@ form.addEventListener("submit", function(event) {
     });
 
     taskList.appendChild(task);
+});
+const authForm = document.querySelector(".auth-form");
+const authEmail = document.querySelector(".auth-email");
+const authPassword = document.querySelector(".auth-password");
+const authMessage = document.querySelector(".auth-message");
+const signupButton = document.querySelector(".btn-signup");
+
+// Đăng nhập
+authForm.addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    const { error } = await supabaseClient.auth.signInWithPassword({
+        email: authEmail.value.trim(),
+        password: authPassword.value
+    });
+
+    if (error) {
+        authMessage.textContent = "Lỗi đăng nhập: " + error.message;
+        return;
+    }
+
+    authMessage.textContent = "Đăng nhập thành công!";
+});
+
+// Đăng ký
+signupButton.addEventListener("click", async function() {
+    console.log("Đã bấm nút Đăng ký!");
+    
+    const email = authEmail.value.trim();
+    const password = authPassword.value;
+
+    if (!authForm.reportValidity()) return;
+
+    if (password.length < 6) {
+        authMessage.textContent = "Mật khẩu cần ít nhất 6 ký tự.";
+        return;
+    }
+
+    const { data, error } = await supabaseClient.auth.signUp({
+        email: email,
+        password: password
+    });
+
+    if (error) {
+        authMessage.textContent = "Lỗi đăng ký: " + error.message;
+        return;
+    }
+
+    if (data.session) {
+        authMessage.textContent = "Đăng ký thành công!";
+    } else {
+        authMessage.textContent =
+            "Đăng ký thành công! Hãy kiểm tra email để xác nhận tài khoản.";
+    }
 });
