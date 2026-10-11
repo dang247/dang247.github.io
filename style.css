@@ -45,13 +45,29 @@ body {
     justify-content: flex-end;
     align-items: center;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 20px;
 }
 a {
-    font-size: 20px;
-    font-weight: 500;
+    font-size: 18px;
+    font-weight: 700;
+    color: #D9E1E8;
+
+    border: 2px outset #D9E1E8;
     text-decoration: none;
+
+    padding: 2px 6px;
+}
+a:hover {
     color: cyan;
+    border: 2px outset cyan;
+
+    transition: 2s ease;
+}
+a:active {
+    background-color: rgb(26, 168, 45);
+    border: 2px inset cyan;
+
+    transition: 0s;
 }
 .top-box-content {
     display: flex;
@@ -76,7 +92,7 @@ a {
 .p1 {
     font-size: 28px;
     font-weight: 700;
-    color: cyan;
+    color: #D9E1E8;
 
     margin: 0;
 }
