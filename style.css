@@ -7,7 +7,7 @@ html {
     margin: 0;
 }
 body {
-    width: 100%;
+    display: block;
     font-family: Roboto, sans-serif;
     font-size: 16px;
     margin: 0;
@@ -31,9 +31,9 @@ body {
     flex-wrap: wrap;
     gap: 20px;
 
-    width: 75%;
+    width: 85%;
     max-width: 900px;
-    margin-top: 8px;
+    margin-top: 6px;
 }
 .header-logo {
     font-size: 24px;
@@ -61,7 +61,8 @@ a:hover {
     color: cyan;
     border: 2px outset cyan;
 
-    transition: 2s ease;
+    transform: translateY(-5px);
+    transition: 1s ease;
 }
 a:active {
     background-color: rgb(26, 168, 45);
@@ -75,7 +76,7 @@ a:active {
     flex-wrap: wrap;
     gap: 40px;
 
-    width: 75%;
+    width: 85%;
     max-width: 900px;
     margin-bottom: 20px;
 }
