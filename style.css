@@ -38,7 +38,7 @@ body {
 .header-logo {
     font-size: 24px;
     font-weight: 700;
-    color: cyan;
+    color: mediumturquoise;
 }
 .header-link {
     display: flex;
@@ -52,23 +52,28 @@ a {
     font-weight: 700;
     color: #D9E1E8;
 
-    border: 2px outset #D9E1E8;
+    border: 2px solid #D9E1E8;
+    border-radius: 3px;
     text-decoration: none;
 
     padding: 2px 6px;
 }
 a:hover {
-    color: cyan;
-    border: 2px outset cyan;
+    color: mediumturquoise;
+    border: 2px outset mediumturquoise;
+    border-radius: 3px;
 
-    transform: translateY(-5px);
+    transform: translateY(-3px);
     transition: 1s ease;
 }
 a:active {
-    background-color: rgb(26, 168, 45);
-    border: 2px inset cyan;
+    border: 2px solid mediumturquoise;
 
     transition: 0s;
+}
+.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 .top-box-content {
     display: flex;
