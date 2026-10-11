@@ -213,7 +213,7 @@ async function loadTasks() {
         task.classList.add("task");
  
         const taskTitle = document.createElement("p");
-        taskTitle.textContent = data.title;
+        taskTitle.textContent = item.title;
 
         const completeCheckbox = document.createElement("input");
         completeCheckbox.type = "checkbox";
