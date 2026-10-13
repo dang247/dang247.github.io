@@ -36,8 +36,8 @@ button,
     flex-wrap: wrap;
     gap: 20px;
 
-    width: 85%;
-    max-width: 900px;
+    width: 80%;
+    /* max-width: 900px; */
     margin-top: 6px;
 }
 .header-logo {
@@ -86,8 +86,8 @@ a:active {
     flex-wrap: wrap;
     gap: 40px;
 
-    width: 85%;
-    max-width: 900px;
+    width: 80%;
+    /* max-width: 900px; */
     margin-bottom: 20px;
 }
 .top-box-content-left {
