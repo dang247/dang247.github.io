@@ -81,9 +81,10 @@ a:active {
     cursor: not-allowed;
 }
 .disabled:hover {
-    color: inherit;
-    border: none;
-    border-radius: 0;
+    color: #D9E1E8;
+    border: 2px solid #D9E1E8;
+    border-radius: 3px;
+
     transform: none;
     transition: none;
 }
