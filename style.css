@@ -80,6 +80,10 @@ a:active {
     opacity: 0.6;
     cursor: not-allowed;
 }
+.disabled:hover {
+    color: inherit;
+    cursor: default;
+}
 .top-box-content {
     display: flex;
     justify-content: space-between;
