@@ -82,7 +82,10 @@ a:active {
 }
 .disabled:hover {
     color: inherit;
-    cursor: default;
+    border: none;
+    border-radius: 0;
+    transform: none;
+    transition: none;
 }
 .top-box-content {
     display: flex;
